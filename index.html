@@ -1038,51 +1038,16 @@
     });
 
 
-    function fileToBase64(file) {
-
+function fileToBase64(file) {
       return new Promise((resolve, reject) => {
-
         const reader = new FileReader();
-
         reader.onload = () => resolve(reader.result);
-
         reader.onerror = reject;
-
         reader.readAsDataURL(file);
-
       });
-
     }
 
-
     // Load approved memes from Firebase
-
-    async function loadApprovedMemes() {
-
-      try {
-
-        const q = query(
-
-          collection(db, 'approved_memes'),
-
-          orderBy('createdAt', 'desc')
-
-        );
-
-        const snapshot = await getDocs(q);
-
-        const approvedMemes = snapshot.docs.map(doc => ({
-
-          id: doc.id,
-
-          src: doc.data().image,
-
-          ...doc.data()
-
-        }));
-
-        if (approvedMemes.length > 0) {
-// Load approved memes from Firebase
     async function loadApprovedMemes() {
       try {
         const q = query(
@@ -1107,8 +1072,6 @@
 
     // Initialize
     loadApprovedMemes();
-
-</script>
+  </script>
 </body>
 </html>
-
