@@ -1,1111 +1,486 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>ميمزات - أفضل ميمزات عربية</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body data-theme="dark">
-
-  <!-- Header -->
-
   <header class="header">
-
     <div class="container">
-
       <a href="/" class="logo">
-
         <div class="logo-icon">😂</div>
-
         <span class="logo-text">ميمزات</span>
-
       </a>
-
       
-
       <div class="search-container">
-
         <span class="search-icon">🔍</span>
-
         <input type="text" class="search-input" placeholder="ابحث عن ميمز..." id="searchInput">
-
       </div>
-
       
-
       <div class="header-actions">
-
         <button class="btn-upload" id="uploadBtn">
-
           <span>⬆️</span>
-
           <span>رفع ميمز</span>
-
         </button>
-
         
-
         <div class="theme-switch-wrapper">
-
           <label class="theme-switch">
-
             <input type="checkbox" class="theme-switch__checkbox" id="themeToggle">
-
             <div class="theme-switch__container">
-
               <div class="theme-switch__clouds"></div>
-
               <div class="theme-switch__stars-container">
-
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
-
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1642 34.9956 19C34.9956 20.1642 35.3837 21.1635 36.1599 22.0069C36.9361 22.8503 37.8798 23.2903 39 23.3545C38.2679 23.3911 37.5976 23.602 36.9802 24.0053C36.3716 24.3995 35.8864 24.9312 35.5248 25.5913C35.172 26.2513 34.9956 26.9572 34.9956 27.7273C34.9956 26.563 34.6075 25.5546 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1642 3.99559 32C3.99559 33.1642 4.38368 34.1635 5.15987 35.0069C5.93605 35.8503 6.87982 36.2903 8 36.3545C7.26792 36.3911 6.59757 36.602 5.98015 37.0053C5.37155 37.3995 4.88644 37.9312 4.52481 38.5913C4.172 39.2513 3.99559 39.9572 3.99559 40.7273C3.99559 39.563 3.6075 38.5546 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56.8313 24.0069C56.0551 24.8503 55.1114 25.2995 54 25.3545C55.1114 25.4095 56.0551 25.8587 56.8313 26.7112C57.6075 27.5546 57.9956 28.563 57.9956 29.7273C57.9956 28.9572 58.172 28.2513 58.5248 27.5913C58.8864 26.9312 59.3716 26.3995 59.9802 26.0053C60.5976 25.602 61.2679 25.3911 62 25.3545C60.8798 25.2903 59.9361 24.8503 59.1599 24.0069C58.3837 23.1635 57.9956 22.1642 57.9956 21C57.9956 22.1642 57.6075 23.1635 56.8313 24.0069ZM81 25.3545C82.1114 25.2995 83.0551 24.8503 83.8313 24.0069C84.6075 23.1635 84.9956 22.1642 84.9956 21C84.9956 22.1642 85.3837 23.1635 86.1599 24.0069C86.9361 24.8503 87.8798 25.2903 89 25.3545C88.2679 25.3911 87.5976 25.602 86.9802 26.0053C86.3716 26.3995 85.8864 26.9312 85.5248 27.5913C85.172 28.2513 84.9956 28.9572 84.9956 29.7273C84.9956 28.563 84.6075 27.5546 83.8313 26.7112C83.0551 25.8587 82.1114 25.4095 81 25.3545ZM136 36.3545C137.111 36.2995 138.055 35.8503 138.831 35.0069C139.607 34.1635 139.996 33.1642 139.996 32C139.996 33.1642 140.384 34.1635 141.16 35.0069C141.936 35.8503 142.88 36.2903 144 36.3545C143.268 36.3911 142.598 36.602 141.98 37.0053C141.372 37.3995 140.886 37.9312 140.525 38.5913C140.172 39.2513 139.996 39.9572 139.996 40.7273C139.996 39.563 139.607 38.5546 138.831 37.7112C138.055 36.8587 137.111 36.4095 136 36.3545ZM101.831 49.0069C101.055 49.8503 100.111 50.2995 99 50.3545C100.111 50.4095 101.055 50.8587 101.831 51.7112C102.607 52.5546 102.996 53.563 102.996 54.7273C102.996 53.9572 103.172 53.2513 103.525 52.5913C103.886 51.9312 104.372 51.3995 104.98 51.0053C105.598 50.602 106.268 50.3911 107 50.3545C105.88 50.2903 104.936 49.8503 104.16 49.0069C103.384 48.1635 102.996 47.1642 102.996 46C102.996 47.1642 102.607 48.1635 101.831 49.0069Z" fill="currentColor"/>
-
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1642 34.9956 19C34.9956 20.1642 35.3837 21.1635 36.1599 22.0069C36.9361 22.8503 37.8798 23.2903 39 23.3545C38.2679 23.3911 37.5976 23.602 36.9802 24.0053C36.3716 24.3995 35.8864 24.9312 35.5248 25.5913C35.172 26.2513 34.9956 26.9572 34.9956 27.7273C34.9956 26.563 34.6075 25.5546 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1642 3.99559 32C3.99559 33.1642 4.38368 34.1635 5.15987 35.0069C5.93605 35.8503 6.87982 36.2903 8 36.3545C7.26792 36.3911 6.59757 36.602 5.98015 37.0053C5.37155 37.3995 4.88644 37.9312 4.52481 38.5913C4.172 39.2513 3.99559 39.9572 3.99559 40.7273C3.99559 39.563 3.6075 38.5546 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56.8313 24.0069C56.0551 24.8503 55.1114 25.2995 54 25.3545C55.1114 25.4095 56.0551 25.8587 56.8313 26.7112C57.6075 27.5546 57.9956 28.563 57.9956 29.7273C57.9956 28.9572 58.172 28.2513 58.5248 27.5913C58.8864 26.9312 59.3716 26.3995 59.9802 26.0053C60.5976 25.602 61.2679 25.3911 62 25.3545C60.8798 25.2903 59.9361 24.8503 59.1599 24.0069C58.3837 23.1635 57.9956 22.1642 57.9956 21C57.9956 22.1642 57.6075 23.1635 56.8313 24.0069ZM81 25.3545C82.1114 25.2995 83.0551 24.8503 83.8313 24.0069C84.6075 23.1635 84.9956 22.1642 84.9956 21C84.9956 22.1642 85.3837 23.1635 86.1599 24.0069C86.9361 24.8503 87.8798 25.2903 89 25.3545C88.2679 25.3911 87.5976 25.602 ... (line truncated)
                 </svg>
-
               </div>
-
               <div class="theme-switch__circle-container">
-
                 <div class="theme-switch__sun-moon-container">
-
                   <div class="theme-switch__moon">
-
                     <div class="theme-switch__spot"></div>
-
                     <div class="theme-switch__spot"></div>
-
                     <div class="theme-switch__spot"></div>
-
                   </div>
-
                 </div>
-
               </div>
-
             </div>
-
           </label>
-
         </div>
-
       </div>
-
     </div>
-
   </header>
 
-
-  <!-- Main Content -->
-
   <main class="main">
-
     <div class="container">
-
-      <!-- Filters -->
-
       <div class="filters">
-
         <button class="filter-btn active" data-filter="all">الكل</button>
-
         <button class="filter-btn" data-filter="top">أعلى</button>
-
         <button class="filter-btn" data-filter="new">جديد</button>
-
         <button class="filter-btn" data-filter="hot">🔥 رائج</button>
-
       </div>
-
-
-      <!-- Memes Grid -->
 
       <div class="memes-grid" id="memesGrid">
-
-        <!-- Memes will be loaded here -->
-
-      </div>
-
+        </div>
     </div>
-
   </main>
 
-
-  <!-- Footer -->
-
   <footer class="footer">
-
     <div class="container">
-
       <p>© 2024 ميمزات - جميع الحقوق محفوظة ❤️</p>
-
     </div>
-
   </footer>
 
-
-  <!-- Upload Modal -->
-
   <div class="modal-overlay" id="uploadModal">
-
     <div class="modal">
-
       <div class="modal-header">
-
         <h2 class="modal-title">رفع ميمز جديد</h2>
-
         <button class="modal-close" id="closeModal">✕</button>
-
       </div>
-
       
-
       <div class="upload-area" id="uploadArea">
-
         <div class="upload-icon">📤</div>
-
         <p class="upload-text">اسحب الصورة هنا أو اضغط للاختيار</p>
-
         <p class="upload-hint">PNG, JPG, GIF - حتى 10MB</p>
-
         <input type="file" id="fileInput" accept="image/*" hidden>
-
       </div>
-
       
-
       <div class="preview-container" id="previewContainer">
-
         <img src="" alt="Preview" class="preview-image" id="previewImage">
-
       </div>
-
       
-
       <button class="btn-submit" id="submitUpload" disabled>رفع الميمز</button>
-
     </div>
-
   </div>
-
-
-  <!-- Toast Notification -->
 
   <div class="toast" id="toast">
-
     <span class="toast-icon">✓</span>
-
     <span class="toast-message" id="toastMessage">تم بنجاح!</span>
-
   </div>
 
-
-  <!-- Firebase SDK -->
-
   <script type="module">
-
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-
-    import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-
+    import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     // Firebase configuration
-
     const firebaseConfig = {
-
       apiKey: "AIzaSyBcQexCPESpz-AteK3jwUapYndPPxCQb3U",
-
       authDomain: "memes-90684.firebaseapp.com",
-
       projectId: "memes-90684",
-
       storageBucket: "memes-90684.firebasestorage.app",
-
       messagingSenderId: "254309006278",
-
       appId: "1:254309006278:web:3790dcf77f804fa1fb90c7",
-
       measurementId: "G-DB8NG9HTF4"
-
     };
-
 
     // Initialize Firebase
-
     const app = initializeApp(firebaseConfig);
-
     const db = getFirestore(app);
 
-    const storage = getStorage(app);
-
-
     // Pre-defined memes list (IDs 1-13 from TikTok, 14-165 local)
-
     const imagesList = [
-
-      // IDs 1-13: TikTok CDN URLs
-
-      { id: 1, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/2869fb2207c44a1eb7420aefadbc15d7~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=762e42db&x-expires=1793361600&x-signature=J0418rGsm5PoKAMzPwAvWlCiA4U%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 2, src: "https://p19-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/9e5a1e5dcd3a4404bbfa7ba9e08dcc3f~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=a0be9e3a&x-expires=1793361600&x-signature=YMtZhsa9fDnVfKlNUvTTQX9xkJA%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 3, src: "https://p19-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/48af254019024563a3f0c33372e5d4ec~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=bfbdeb7a&x-expires=1793361600&x-signature=Bi%2FIUsE8cHlP5JDT2mw3sqK8QOw%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 4, src: "https://p19-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/9b69121453dd4278ab310eee19f49426~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=2e716b48&x-expires=1793361600&x-signature=zGUhzR%2B3%2F2BPpC0XfMf1Fu4seOg%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 5, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/b21e7c94705547e78b2d531d097a266f~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=7c8fae60&x-expires=1793361600&x-signature=w53ogfgwL9XjCVZDD5DHOjjShHk%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 6, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/cacf44f916fb4f13a17cbf1de675bfb6~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=c7743461&x-expires=1793361600&x-signature=DG6HbqjlkDhNhngp%2BPfZcgkm520%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 7, src: "https://p19-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/87d839e6112d43ce8416acafdd2bdf3c~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=3ff9b81e&x-expires=1793361600&x-signature=X7u40mbY9gouPMKLdSXfgsSrwss%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 8, src: "https://p16-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/c4dba327ba214c71bf7c8fa7682949c8~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=6cd45568&x-expires=1793361600&x-signature=ByG236AurG03ASMIhiV5371QIk0%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 9, src: "https://p19-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/6b9caa55759e432898406e064c2ddb80~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=c7e8a5c4&x-expires=1793361600&x-signature=YROKONpP%2Fq9UJw8Cpsfj9v8odIM%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 10, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/4fd4966775e84597982ce88ba6a481b8~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=1c85b1e0&x-expires=1793361600&x-signature=WMrJ7R6xQ7Ah3OQcPFBMXEArj88%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      { id: 11, src: "https://p16-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/c32e88e5398f49bf9b2f3cfa497dfaa8~tplv-jj85edgx6n-image-origin.jpeg?dr=8569&refresh_token=d643710b&x-expires=1793444400&x-signature=bsCXyhTi4TAp4Dr0vWEKT9uBDiI%3D&t=67a6c45e&ps=a0626fcd&shp=ff37627b&shcp=ff37627b&idc=my" },
-
-      // IDs 12-13: Local images
-
-      { id: 12, src: "timps/meme12.jpg" },
-
-      { id: 13, src: "timps/meme13.jpg" },
-
-      // IDs 14-165: Local images
-
-      { id: 14, src: "timps/meme14.jpg" },
-
-      { id: 15, src: "timps/meme15.jpg" },
-
-      { id: 16, src: "timps/meme16.jpg" },
-
-      { id: 17, src: "timps/meme17.jpg" },
-
-      { id: 18, src: "timps/meme18.jpg" },
-
-      { id: 19, src: "timps/meme19.jpg" },
-
-      { id: 20, src: "timps/meme20.jpg" },
-
-      { id: 21, src: "timps/meme21.jpg" },
-
-      { id: 22, src: "timps/meme22.jpg" },
-
-      { id: 23, src: "timps/meme23.jpg" },
-
-      { id: 24, src: "timps/meme24.jpg" },
-
-      { id: 25, src: "timps/meme25.jpg" },
-
-      { id: 26, src: "timps/meme26.jpg" },
-
-      { id: 27, src: "timps/meme27.jpg" },
-
-      { id: 28, src: "timps/meme28.jpg" },
-
-      { id: 29, src: "timps/meme29.jpg" },
-
-      { id: 30, src: "timps/meme30.jpg" },
-
-      { id: 31, src: "timps/meme31.jpg" },
-
-      { id: 32, src: "timps/meme32.jpg" },
-
-      { id: 33, src: "timps/meme33.jpg" },
-
-      { id: 34, src: "timps/meme34.jpg" },
-
-      { id: 35, src: "timps/meme35.jpg" },
-
-      { id: 36, src: "timps/meme36.jpg" },
-
-      { id: 37, src: "timps/meme37.jpg" },
-
-      { id: 38, src: "timps/meme38.jpg" },
-
-      { id: 39, src: "timps/meme39.jpg" },
-
-      { id: 40, src: "timps/meme40.jpg" },
-
-      { id: 41, src: "timps/meme41.jpg" },
-
-      { id: 42, src: "timps/meme42.jpg" },
-
-      { id: 43, src: "timps/meme43.jpg" },
-
-      { id: 44, src: "timps/meme44.jpg" },
-
-      { id: 45, src: "timps/meme45.jpg" },
-
-      { id: 46, src: "timps/meme46.jpg" },
-
-      { id: 47, src: "timps/meme47.jpg" },
-
-      { id: 48, src: "timps/meme48.jpg" },
-
-      { id: 49, src: "timps/meme49.jpg" },
-
-      { id: 50, src: "timps/meme50.jpg" },
-
-      { id: 51, src: "timps/meme51.jpg" },
-
-      { id: 52, src: "timps/meme52.jpg" },
-
-      { id: 53, src: "timps/meme53.jpg" },
-
-      { id: 54, src: "timps/meme54.jpg" },
-
-      { id: 55, src: "timps/meme55.jpg" },
-
-      { id: 56, src: "timps/meme56.jpg" },
-
-      { id: 57, src: "timps/meme57.jpg" },
-
-      { id: 58, src: "timps/meme58.jpg" },
-
-      { id: 59, src: "timps/meme59.jpg" },
-
-      { id: 60, src: "timps/meme60.jpg" },
-
-      { id: 61, src: "timps/meme61.jpg" },
-
-      { id: 62, src: "timps/meme62.jpg" },
-
-      { id: 63, src: "timps/meme63.jpg" },
-
-      { id: 64, src: "timps/meme64.jpg" },
-
-      { id: 65, src: "timps/meme65.jpg" },
-
-      { id: 66, src: "timps/meme66.jpg" },
-
-      { id: 67, src: "timps/meme67.jpg" },
-
-      { id: 68, src: "timps/meme68.jpg" },
-
-      { id: 69, src: "timps/meme69.jpg" },
-
-      { id: 70, src: "timps/meme70.jpg" },
-
-      { id: 71, src: "timps/meme71.jpg" },
-
-      { id: 72, src: "timps/meme72.jpg" },
-
-      { id: 73, src: "timps/meme73.jpg" },
-
-      { id: 74, src: "timps/meme74.jpg" },
-
-      { id: 75, src: "timps/meme75.jpg" },
-
-      { id: 76, src: "timps/meme76.jpg" },
-
-      { id: 77, src: "timps/meme77.jpg" },
-
-      { id: 78, src: "timps/meme78.jpg" },
-
-      { id: 79, src: "timps/meme79.jpg" },
-
-      { id: 80, src: "timps/meme80.jpg" },
-
-      { id: 81, src: "timps/meme81.jpg" },
-
-      { id: 82, src: "timps/meme82.jpg" },
-
-      { id: 83, src: "timps/meme83.jpg" },
-
-      { id: 84, src: "timps/meme84.jpg" },
-
-      { id: 85, src: "timps/meme85.jpg" },
-
-      { id: 86, src: "timps/meme86.jpg" },
-
-      { id: 87, src: "timps/meme87.jpg" },
-
-      { id: 88, src: "timps/meme88.jpg" },
-
-      { id: 89, src: "timps/meme89.jpg" },
-
-      { id: 90, src: "timps/meme90.jpg" },
-
-      { id: 91, src: "timps/meme91.jpg" },
-
-      { id: 92, src: "timps/meme92.jpg" },
-
-      { id: 93, src: "timps/meme93.jpg" },
-
-      { id: 94, src: "timps/meme94.jpg" },
-
-      { id: 95, src: "timps/meme95.jpg" },
-
-      { id: 96, src: "timps/meme96.jpg" },
-
-      { id: 97, src: "timps/meme97.jpg" },
-
-      { id: 98, src: "timps/meme98.jpg" },
-
-      { id: 99, src: "timps/meme99.jpg" },
-
-      { id: 100, src: "timps/meme100.jpg" },
-
-      { id: 101, src: "timps/meme101.jpg" },
-
-      { id: 102, src: "timps/meme102.jpg" },
-
-      { id: 103, src: "timps/meme103.jpg" },
-
-      { id: 104, src: "timps/meme104.jpg" },
-
-      { id: 105, src: "timps/meme105.jpg" },
-
-      { id: 106, src: "timps/meme106.jpg" },
-
-      { id: 107, src: "timps/meme107.jpg" },
-
-      { id: 108, src: "timps/meme108.jpg" },
-
-      { id: 109, src: "timps/meme109.jpg" },
-
-      { id: 110, src: "timps/meme110.jpg" },
-
-      { id: 111, src: "timps/meme111.jpg" },
-
-      { id: 112, src: "timps/meme112.jpg" },
-
-      { id: 113, src: "timps/meme113.jpg" },
-
-      { id: 114, src: "timps/meme114.jpg" },
-
-      { id: 115, src: "timps/meme115.jpg" },
-
-      { id: 116, src: "timps/meme116.jpg" },
-
-      { id: 117, src: "timps/meme117.jpg" },
-
-      { id: 118, src: "timps/meme118.jpg" },
-
-      { id: 119, src: "timps/meme119.jpg" },
-
-      { id: 120, src: "timps/meme120.jpg" },
-
-      { id: 121, src: "timps/meme121.jpg" },
-
-      { id: 122, src: "timps/meme122.jpg" },
-
-      { id: 123, src: "timps/meme123.jpg" },
-
-      { id: 124, src: "timps/meme124.jpg" },
-
-      { id: 125, src: "timps/meme125.jpg" },
-
-      { id: 126, src: "timps/meme126.jpg" },
-
-      { id: 127, src: "timps/meme127.jpg" },
-
-      { id: 128, src: "timps/meme128.jpg" },
-
-      { id: 129, src: "timps/meme129.jpg" },
-
-      { id: 130, src: "timps/meme130.jpg" },
-
-      { id: 131, src: "timps/meme131.jpg" },
-
-      { id: 132, src: "timps/meme132.jpg" },
-
-      { id: 133, src: "timps/meme133.jpg" },
-
-      { id: 134, src: "timps/meme134.jpg" },
-
-      { id: 135, src: "timps/meme135.jpg" },
-
-      { id: 136, src: "timps/meme136.jpg" },
-
-      { id: 137, src: "timps/meme137.jpg" },
-
-      { id: 138, src: "timps/meme138.jpg" },
-
-      { id: 139, src: "timps/meme139.jpg" },
-
-      { id: 140, src: "timps/meme140.jpg" },
-
-      { id: 141, src: "timps/meme141.jpg" },
-
-      { id: 142, src: "timps/meme142.jpg" },
-
-      { id: 143, src: "timps/meme143.jpg" },
-
-      { id: 144, src: "timps/meme144.jpg" },
-
-      { id: 145, src: "timps/meme145.jpg" },
-
-      { id: 146, src: "timps/meme146.jpg" },
-
-      { id: 147, src: "timps/meme147.jpg" },
-
-      { id: 148, src: "timps/meme148.jpg" },
-
-      { id: 149, src: "timps/meme149.jpg" },
-
-      { id: 150, src: "timps/meme150.jpg" },
-
-      { id: 151, src: "timps/meme151.jpg" },
-
-      { id: 152, src: "timps/meme152.jpg" },
-
-      { id: 153, src: "timps/meme153.jpg" },
-
-      { id: 154, src: "timps/meme154.jpg" },
-
-      { id: 155, src: "timps/meme155.jpg" },
-
-      { id: 156, src: "timps/meme156.jpg" },
-
-      { id: 157, src: "timps/meme157.jpg" },
-
-      { id: 158, src: "timps/meme158.jpg" },
-
-      { id: 159, src: "timps/meme159.jpg" },
-
-      { id: 160, src: "timps/meme160.jpg" },
-
-      { id: 161, src: "timps/meme161.jpg" },
-
-      { id: 162, src: "timps/meme162.jpg" },
-
-      { id: 163, src: "timps/meme163.jpg" },
-
-      { id: 164, src: "timps/meme164.jpg" },
-
-      { id: 165, src: "timps/meme165.jpg" }
-
+      // IDs 1-11: TikTok CDN URLs
+      { id: 1, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/2869fb2207c44a1eb7420aefadbc15d7~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 2, src: "https://p19-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/9e5a1e5dcd3a4404bbfa7ba9e08dcc3f~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 3, src: "https://p19-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/48af254019024563a3f0c33372e5d4ec~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 4, src: "https://p19-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/9b69121453dd4278ab310eee19f49426~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 5, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/b21e7c94705547e78b2d531d097a266f~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 6, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/cacf44f916fb4f13a17cbf1de675bfb6~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 7, src: "https://p19-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/87d839e6112d43ce8416acafdd2bdf3c~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 8, src: "https://p16-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/c4dba327ba214c71bf7c8fa7682949c8~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 9, src: "https://p19-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/6b9caa55759e432898406e064c2ddb80~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 10, src: "https://p16-comment-sign-sg.tiktokcdn.com/tos-alisg-i-zt8igodiya-sg/4fd4966775e84597982ce88ba6a481b8~tplv-jj85edgx6n-image-origin.jpeg" },
+      { id: 11, src: "https://p16-comment-sign-va.tiktokcdn.com/tos-maliva-i-jj85edgx6n-us/c32e88e5398f49bf9b2f3cfa497dfaa8~tplv-jj85edgx6n-image-origin.jpeg" },
+      // IDs 12-165: Local images
+      ...Array.from({ length: 154 }, (_, i) => ({ id: i + 12, src: `timps/meme${i + 12}.jpg` }))
     ];
 
-
     // DOM Elements
-
     const memesGrid = document.getElementById('memesGrid');
-
     const searchInput = document.getElementById('searchInput');
-
     const uploadBtn = document.getElementById('uploadBtn');
-
     const uploadModal = document.getElementById('uploadModal');
-
     const closeModal = document.getElementById('closeModal');
-
     const uploadArea = document.getElementById('uploadArea');
-
     const fileInput = document.getElementById('fileInput');
-
     const previewContainer = document.getElementById('previewContainer');
-
     const previewImage = document.getElementById('previewImage');
-
     const submitUpload = document.getElementById('submitUpload');
-
     const themeToggle = document.getElementById('themeToggle');
-
     const toast = document.getElementById('toast');
-
     const toastMessage = document.getElementById('toastMessage');
-
     const toastIcon = toast.querySelector('.toast-icon');
-
     const filterBtns = document.querySelectorAll('.filter-btn');
 
-
     let allMemes = [...imagesList];
-
     let selectedFile = null;
-
-
-    // Render memes grid
-
-    function renderMemes(memes) {
-
-      memesGrid.innerHTML = '';
-
-      
-
-      if (memes.length === 0) {
-
-        memesGrid.innerHTML = `
-
-          <div class="empty-state">
-
-            <div class="empty-icon">🔍</div>
-
-            <p class="empty-text">لا توجد ميمزات</p>
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      memes.forEach(meme => {
-
-        const card = document.createElement('div');
-
-        card.className = 'meme-card';
-
-        card.innerHTML = `
-
-          <div class="meme-image-container">
-
-            <img src="${meme.src}" alt="ميمز #${meme.id}" class="meme-image" loading="lazy"
-
-                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%231a1a2e%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%238b5cf6%22 font-size=%2212%22>ميمز #${meme.id}</text></svg>'">
-
-            <div class="meme-overlay">
-
-              <button class="btn-download" onclick="handleDownload(${meme.id}, this)">
-
-                <span>⬇️</span>
-
-                <span>تحميل</span>
-
-              </button>
-
-            </div>
-
-          </div>
-
-          <div class="meme-info">
-
-            <div class="meme-id">
-
-              <span>#${meme.id}</span>
-
-            </div>
-
-          </div>
-
-        `;
-
-        memesGrid.appendChild(card);
-
-      });
-
-    }
-
-
-    // Download handler
-
-    window.handleDownload = async function(imageId, buttonElement) {
-
-      const image = allMemes.find(img => img.id === imageId);
-
-      if (!image) return;
-
-
-      buttonElement.classList.add('loading');
-
-      buttonElement.disabled = true;
-
-      buttonElement.innerHTML = '<span>⏳</span><span>جاري...</span>';
-
-
-      try {
-
-        const response = await fetch(image.src);
-
-        if (!response.ok) throw new Error('خطأ في التحميل');
-
-
-        const imageBlob = await response.blob();
-
-        const blobUrl = URL.createObjectURL(imageBlob);
-
-
-        const downloadLink = document.createElement('a');
-
-        downloadLink.href = blobUrl;
-
-        downloadLink.download = `ميمز-${imageId}-${Date.now()}.jpg`;
-
-        document.body.appendChild(downloadLink);
-
-        downloadLink.click();
-
-        document.body.removeChild(downloadLink);
-
-        URL.revokeObjectURL(blobUrl);
-
-
-        showToast('تم تحميل الميمز بنجاح!', 'success');
-
-      } catch (error) {
-
-        console.error('Download error:', error);
-
-        showToast('حدث خطأ أثناء التحميل', 'error');
-
-      } finally {
-
-        buttonElement.classList.remove('loading');
-
-        buttonElement.disabled = false;
-
-        buttonElement.innerHTML = '<span>⬇️</span><span>تحميل</span>';
-
-      }
-
-    };
-
+    let base64Data = null;
 
     // Toast notification
-
     function showToast(message, type = 'success') {
-
       toastMessage.textContent = message;
-
       toast.className = `toast ${type}`;
-
       toastIcon.textContent = type === 'success' ? '✓' : '✕';
-
       toast.classList.add('show');
-
       setTimeout(() => toast.classList.remove('show'), 3000);
-
     }
-
 
     // Theme toggle
-
     themeToggle.addEventListener('change', () => {
-
       document.body.setAttribute('data-theme', themeToggle.checked ? 'light' : 'dark');
-
       localStorage.setItem('theme', themeToggle.checked ? 'light' : 'dark');
-
     });
-
 
     // Load saved theme
-
     const savedTheme = localStorage.getItem('theme');
-
     if (savedTheme) {
-
       document.body.setAttribute('data-theme', savedTheme);
-
       themeToggle.checked = savedTheme === 'light';
-
     }
 
+    // Render memes grid
+    function renderMemes(memes) {
+      memesGrid.innerHTML = '';
+      
+      if (memes.length === 0) {
+        memesGrid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <p class="empty-text">لا توجد ميمزات</p>
+          </div>
+        `;
+        return;
+      }
+
+      memes.forEach(meme => {
+        const card = document.createElement('div');
+        card.className = 'meme-card';
+        card.innerHTML = `
+          <div class="meme-image-container">
+            <img src="${meme.src}" alt="ميمز #${meme.id}" class="meme-image" loading="lazy"
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%231a1a2e%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%238b5cf6%22 font-size=%2212%22>ميمز #${meme.id}</text></svg>'">
+            <div class="meme-overlay">
+              <button class="btn-download" onclick="downloadMeme('${meme.src}')">
+                <span>⬇️</span>
+                <span>تحميل</span>
+              </button>
+            </div>
+          </div>
+          <div class="meme-info">
+            <div class="meme-id">
+              <span>#${meme.id}</span>
+            </div>
+          </div>
+        `;
+        memesGrid.appendChild(card);
+      });
+    }
+
+    // Compress image and convert to base64
+    async function compressAndConvertToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            // Create canvas for compression
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Calculate new dimensions (max 800px width/height)
+            let width = img.width;
+            let height = img.height;
+            const maxSize = 800;
+            
+            if (width > maxSize || height > maxSize) {
+              if (width > height) {
+                height = (height / width) * maxSize;
+                width = maxSize;
+              } else {
+                width = (width / height) * maxSize;
+                height = maxSize;
+              }
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw image
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convert to base64 with 0.7 quality (70%)
+            const base64 = canvas.toDataURL('image/jpeg', 0.7);
+            resolve(base64);
+          };
+          
+          img.onerror = () => reject(new Error('فشل في تحميل الصورة'));
+          img.src = e.target.result;
+        };
+        
+        reader.onerror = () => reject(new Error('فشل في قراءة الملف'));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Download meme function
+    window.downloadMeme = async function(src) {
+      try {
+        showToast('جاري تحميل الصورة...', 'success');
+        
+        const response = await fetch(src);
+        if (!response.ok) throw new Error('خطأ في التحميل');
+
+        const imageBlob = await response.blob();
+        const blobUrl = URL.createObjectURL(imageBlob);
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = blobUrl;
+        downloadLink.download = `ميمز-${Date.now()}.jpg`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(blobUrl);
+
+        showToast('تم تحميل الميمز بنجاح!', 'success');
+      } catch (error) {
+        console.error('Download error:', error);
+        showToast('حدث خطأ أثناء التحميل', 'error');
+      }
+    };
 
     // Search functionality
-
     searchInput.addEventListener('input', (e) => {
-
       const searchTerm = e.target.value.toLowerCase();
-
       const filtered = allMemes.filter(meme => 
-
         meme.id.toString().includes(searchTerm)
-
       );
-
       renderMemes(filtered);
-
     });
-
 
     // Filter functionality
-
     filterBtns.forEach(btn => {
-
       btn.addEventListener('click', () => {
-
         filterBtns.forEach(b => b.classList.remove('active'));
-
         btn.classList.add('active');
-
         const filter = btn.dataset.filter;
-
         if (filter === 'all') {
-
           renderMemes(allMemes);
-
         } else {
-
-          // For demo, show first 20 for any filter
-
           renderMemes(allMemes.slice(0, 20));
-
         }
-
       });
-
     });
-
 
     // Upload Modal
-
     uploadBtn.addEventListener('click', () => {
-
       uploadModal.classList.add('active');
-
     });
-
 
     closeModal.addEventListener('click', () => {
-
       uploadModal.classList.remove('active');
-
       resetUpload();
-
     });
-
 
     uploadModal.addEventListener('click', (e) => {
-
       if (e.target === uploadModal) {
-
         uploadModal.classList.remove('active');
-
         resetUpload();
-
       }
-
     });
-
 
     // File upload
-
     uploadArea.addEventListener('click', () => fileInput.click());
-
     
-
     uploadArea.addEventListener('dragover', (e) => {
-
       e.preventDefault();
-
       uploadArea.classList.add('dragover');
-
     });
-
 
     uploadArea.addEventListener('dragleave', () => {
-
       uploadArea.classList.remove('dragover');
-
     });
-
 
     uploadArea.addEventListener('drop', (e) => {
-
       e.preventDefault();
-
       uploadArea.classList.remove('dragover');
-
       const file = e.dataTransfer.files[0];
-
       if (file && file.type.startsWith('image/')) {
-
         handleFileSelect(file);
-
+      } else {
+        showToast('يرجى اختيار ملف صورة', 'error');
       }
-
     });
-
 
     fileInput.addEventListener('change', (e) => {
-
       const file = e.target.files[0];
-
       if (file) handleFileSelect(file);
-
     });
 
-
-    function handleFileSelect(file) {
-
+    async function handleFileSelect(file) {
+      // Check file size (max 10MB)
       if (file.size > 10 * 1024 * 1024) {
-
         showToast('حجم الملف كبير جداً (الحد الأقصى 10MB)', 'error');
-
         return;
+      }
 
+      // Check file type
+      if (!file.type.startsWith('image/')) {
+        showToast('يرجى اختيار ملف صورة', 'error');
+        return;
       }
 
       selectedFile = file;
-
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-
-        previewImage.src = e.target.result;
-
+      
+      try {
+        // Show loading state
+        previewImage.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%231a1a2e" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%238b5cf6" font-size="14">جاري المعالجة...</text></svg>';
         previewContainer.classList.add('active');
+        submitUpload.disabled = true;
+        submitUpload.textContent = 'جاري الضغط...';
 
+        // Compress and convert to base64
+        base64Data = await compressAndConvertToBase64(file);
+        
+        // Show preview
+        previewImage.src = base64Data;
+        previewContainer.classList.add('active');
         submitUpload.disabled = false;
-
-      };
-
-      reader.readAsDataURL(file);
-
+        submitUpload.textContent = 'رفع الميمز';
+        
+        showToast('تم اختيار الصورة - اضغط رفع لإرسالها', 'success');
+      } catch (error) {
+        console.error('Error processing image:', error);
+        showToast('حدث خطأ في معالجة الصورة', 'error');
+        resetUpload();
+      }
     }
-
 
     function resetUpload() {
-
       selectedFile = null;
-
+      base64Data = null;
       fileInput.value = '';
-
       previewImage.src = '';
-
       previewContainer.classList.remove('active');
-
       submitUpload.disabled = true;
-
+      submitUpload.textContent = 'رفع الميمز';
     }
 
-
-    // Submit upload to Firebase
-
+    // Submit upload to Firebase Firestore
     submitUpload.addEventListener('click', async () => {
-
-      if (!selectedFile) return;
-
+      if (!base64Data) {
+        showToast('يرجى اختيار صورة أولاً', 'error');
+        return;
+      }
 
       submitUpload.disabled = true;
-
       submitUpload.textContent = 'جاري الرفع...';
 
-
       try {
-
-        // Convert to base64 and save to Firestore
-
-        const base64 = await fileToBase64(selectedFile);
-
+        console.log('Uploading to Firestore...');
+        console.log('Base64 data length:', base64Data.length);
         
-
-        await addDoc(collection(db, 'pending_memes'), {
-
-          image: base64,
-
+        // Save to Firestore
+        const docRef = await addDoc(collection(db, 'pending_memes'), {
+          image: base64Data,
           createdAt: serverTimestamp(),
-
           status: 'pending'
-
         });
 
-
+        console.log('Document written with ID:', docRef.id);
+        
         showToast('تم إرسال الميمز للمراجعة! سيتم نشره بعد موافقة الإدارة', 'success');
-
         uploadModal.classList.remove('active');
-
         resetUpload();
-
       } catch (error) {
-
         console.error('Upload error:', error);
-
-        showToast('حدث خطأ أثناء الرفع. حاول مرة أخرى', 'error');
-
+        
+        // Show specific error message
+        let errorMessage = 'حدث خطأ أثناء الرفع. حاول مرة أخرى';
+        
+        if (error.code === 'permission-denied') {
+          errorMessage = 'ليس لديك صلاحية الرفع. تحقق من إعدادات Firebase';
+        } else if (error.code === ' quota-exceeded') {
+          errorMessage = 'تم تجاوز الحد الأقصى للتخزين';
+        } else if (error.code === 'unavailable') {
+          errorMessage = 'الخدمة غير متاحة حالياً. تحقق من اتصالك بالإنترنت';
+        }
+        
+        showToast(errorMessage, 'error');
       } finally {
-
         submitUpload.disabled = false;
-
         submitUpload.textContent = 'رفع الميمز';
-
       }
-
     });
 
-
-    function fileToBase64(file) {
-
-      return new Promise((resolve, reject) => {
-
-        const reader = new FileReader();
-
-        reader.onload = () => resolve(reader.result);
-
-        reader.onerror = reject;
-
-        reader.readAsDataURL(file);
-
-      });
-
-    }
-
-
     // Load approved memes from Firebase
-
     async function loadApprovedMemes() {
-
       try {
-
         const q = query(
-
           collection(db, 'approved_memes'),
-
           orderBy('createdAt', 'desc')
-
         );
-
         const snapshot = await getDocs(q);
-
         const approvedMemes = snapshot.docs.map(doc => ({
-
           id: doc.id,
-
           src: doc.data().image,
-
           ...doc.data()
-
         }));
-
         if (approvedMemes.length > 0) {
-
-          allMemes = [...approvedMemes.reverse(), ...imagesList];
-
+          allMemes = [...approvedMemes, ...imagesList];
         }
-
         renderMemes(allMemes);
-
       } catch (error) {
-
         console.error('Error loading approved memes:', error);
-
         renderMemes(allMemes);
-
       }
-
     }
-
 
     // Initialize
-
     loadApprovedMemes();
-
   </script>
-
 </body>
-
 </html>
