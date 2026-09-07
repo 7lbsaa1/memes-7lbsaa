@@ -1038,40 +1038,74 @@
     });
 
 
-function fileToBase64(file) {
+    function fileToBase64(file) {
+
       return new Promise((resolve, reject) => {
+
         const reader = new FileReader();
+
         reader.onload = () => resolve(reader.result);
+
         reader.onerror = reject;
+
         reader.readAsDataURL(file);
+
       });
+
     }
+
 
     // Load approved memes from Firebase
+
     async function loadApprovedMemes() {
+
       try {
+
         const q = query(
+
           collection(db, 'approved_memes'),
+
           orderBy('createdAt', 'desc')
+
         );
+
         const snapshot = await getDocs(q);
+
         const approvedMemes = snapshot.docs.map(doc => ({
+
           id: doc.id,
+
           src: doc.data().image,
+
           ...doc.data()
+
         }));
+
         if (approvedMemes.length > 0) {
+
           allMemes = [...approvedMemes.reverse(), ...imagesList];
+
         }
+
         renderMemes(allMemes);
+
       } catch (error) {
+
         console.error('Error loading approved memes:', error);
+
         renderMemes(allMemes);
+
       }
+
     }
 
+
     // Initialize
+
     loadApprovedMemes();
+
   </script>
+
 </body>
+
 </html>
