@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070000">
+  <title>غير مصرح لك بالدخول</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #ff1717;
+      --red-bright: #ff3b3b;
+      --red-dark: #650000;
+      --white: #fff;
+      --muted: #c7baba;
+      --black: #030000;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Cairo", Arial, sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(180, 0, 0, .32), transparent 34%),
+        radial-gradient(circle at 10% 80%, rgba(255, 0, 0, .16), transparent 28%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 0, .16), transparent 28%),
+        linear-gradient(180deg, #100000 0%, #050000 50%, #020000 100%);
+      position: relative;
+    }
+
+    /* Red atmospheric glow */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 0, 0, .30), transparent 35%),
+        radial-gradient(ellipse at 0% 75%, rgba(255, 0, 0, .24), transparent 25%),
+        radial-gradient(ellipse at 100% 75%, rgba(255, 0, 0, .24), transparent 25%);
+      filter: blur(25px);
+      animation: atmosphere 6s ease-in-out infinite alternate;
+    }
+
+    /* Subtle cyber grid */
+    .grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .12;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    /* Corner HUD */
+    .corner {
+      position: fixed;
+      width: 105px;
+      height: 105px;
+      pointer-events: none;
+      opacity: .9;
+    }
+
+    .corner::before,
+    .corner::after {
+      content: "";
+      position: absolute;
+      background: var(--red);
+      box-shadow: 0 0 12px var(--red), 0 0 28px rgba(255,0,0,.55);
+    }
+
+    .corner::before {
+      width: 100%;
+      height: 3px;
+      top: 0;
+      right: 0;
+    }
+
+    .corner::after {
+      width: 3px;
+      height: 100%;
+      top: 0;
+      right: 0;
+    }
+
+    .corner span,
+    .corner span::after {
+      content: "";
+      position: absolute;
+      background: var(--red);
+      box-shadow: 0 0 10px var(--red);
+    }
+
+    .corner span {
+      width: 52px;
+      height: 3px;
+      top: 18px;
+      right: 18px;
+    }
+
+    .corner span::after {
+      width: 3px;
+      height: 52px;
+      top: 0;
+      right: 0;
+    }
+
+    .top-left {
+      top: 38px;
+      left: 38px;
+      transform: rotate(90deg);
+    }
+
+    .top-right {
+      top: 38px;
+      right: 38px;
+    }
+
+    .bottom-left {
+      bottom: 38px;
+      left: 38px;
+      transform: rotate(180deg);
+    }
+
+    .bottom-right {
+      bottom: 38px;
+      right: 38px;
+      transform: rotate(270deg);
+    }
+
+    /* Main */
+    .page {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      padding: 30px;
+    }
+
+    .content {
+      width: min(900px, 92vw);
+      text-align: center;
+      transform: translateY(-1vh);
+    }
+
+    /* Warning icon */
+    .warning-wrap {
+      width: 165px;
+      height: 145px;
+      margin: 0 auto 28px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .warning {
+      width: 120px;
+      height: 106px;
+      position: relative;
+      filter:
+        drop-shadow(0 0 8px rgba(255, 0, 0, .95))
+        drop-shadow(0 0 28px rgba(255, 0, 0, .55));
+    }
+
+    .warning::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(50% 0%, 100% 88%, 93% 100%, 7% 100%, 0% 88%);
+      background: linear-gradient(180deg, #ff6868, #ff1111 55%, #a00000);
+    }
+
+    .warning::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      clip-path: polygon(50% 0%, 100% 88%, 93% 100%, 7% 100%, 0% 88%);
+      background: #120000;
+    }
+
+    .exclamation {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 48%;
+      transform: translate(-50%, -50%);
+      font-size: 62px;
+      line-height: 1;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 8px #fff, 0 0 22px #ff4a4a;
+    }
+
+    .scan {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 280px;
+      height: 2px;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(90deg, transparent, #ff2222, transparent);
+      box-shadow: 0 0 18px #ff0000;
+      opacity: .7;
+      animation: scan 2.8s ease-in-out infinite;
+    }
+
+    /* Glitch lines */
+    .glitch-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .glitch-lines i {
+      position: absolute;
+      height: 2px;
+      background: #ff2020;
+      box-shadow: 0 0 8px #ff0000;
+      opacity: 0;
+      animation: glitch 3s linear infinite;
+    }
+
+    .glitch-lines i:nth-child(1) { width: 90px; top: 43%; right: 16%; animation-delay: .3s; }
+    .glitch-lines i:nth-child(2) { width: 55px; top: 48%; left: 14%; animation-delay: 1.1s; }
+    .glitch-lines i:nth-child(3) { width: 110px; top: 56%; right: 12%; animation-delay: 1.8s; }
+    .glitch-lines i:nth-child(4) { width: 65px; top: 63%; left: 18%; animation-delay: 2.4s; }
+
+    h1 {
+      font-size: clamp(38px, 5.2vw, 78px);
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+      color: #fff;
+      text-shadow:
+        0 0 7px rgba(255,255,255,.8),
+        0 0 22px rgba(255,40,40,.9),
+        0 0 48px rgba(255,0,0,.55);
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    .subtitle {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(15px, 1.7vw, 21px);
+      line-height: 2;
+      font-weight: 500;
+      text-shadow: 0 2px 10px #000;
+    }
+
+    .subtitle strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Home button */
+    .home-btn {
+      position: relative;
+      margin: 40px auto 0;
+      width: min(330px, 90vw);
+      height: 65px;
+      border: 1px solid rgba(255, 42, 42, .95);
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 800;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 30, 30, .12),
+        rgba(60, 0, 0, .30)
+      );
+      box-shadow:
+        inset 0 0 20px rgba(255, 0, 0, .10),
+        0 0 12px rgba(255, 0, 0, .35),
+        0 0 35px rgba(255, 0, 0, .13);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow: hidden;
+      transition: .35s ease;
+    }
+
+    .home-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 25%,
+        rgba(255,255,255,.20) 50%,
+        transparent 75%
+      );
+      transform: translateX(-120%);
+      transition: .65s ease;
+    }
+
+    .home-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: #ff5a5a;
+      box-shadow:
+        inset 0 0 25px rgba(255, 0, 0, .18),
+        0 0 18px rgba(255, 0, 0, .65),
+        0 0 55px rgba(255, 0, 0, .28);
+    }
+
+    .home-btn:hover::before {
+      transform: translateX(120%);
+    }
+
+    .home-icon {
+      width: 29px;
+      height: 29px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-icon svg {
+      width: 27px;
+      height: 27px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 5px rgba(255,255,255,.65));
+    }
+
+    .home-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Red floor reflection */
+    .floor {
+      position: fixed;
+      left: 50%;
+      bottom: -80px;
+      transform: translateX(-50%);
+      width: 75vw;
+      height: 180px;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse,
+        rgba(255, 0, 0, .42) 0%,
+        rgba(255, 0, 0, .12) 35%,
+        transparent 72%
+      );
+      filter: blur(14px);
+    }
+
+    .horizon {
+      position: fixed;
+      left: 50%;
+      bottom: 80px;
+      transform: translateX(-50%);
+      width: 70vw;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff1010, transparent);
+      box-shadow: 0 0 15px #ff0000, 0 0 45px rgba(255,0,0,.8);
+      opacity: .7;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes atmosphere {
+      from { transform: scale(1); opacity: .8; }
+      to { transform: scale(1.07); opacity: 1; }
+    }
+
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 7px #fff, 0 0 18px rgba(255,30,30,.7), 0 0 35px rgba(255,0,0,.35); }
+      to { text-shadow: 0 0 10px #fff, 0 0 28px rgba(255,30,30,1), 0 0 60px rgba(255,0,0,.55); }
+    }
+
+    @keyframes scan {
+      0%, 100% { opacity: .15; width: 150px; }
+      50% { opacity: .8; width: 320px; }
+    }
+
+    @keyframes glitch {
+      0%, 88%, 100% { opacity: 0; transform: translateX(0); }
+      90% { opacity: .8; transform: translateX(15px); }
+      92% { opacity: .3; transform: translateX(-20px); }
+      94% { opacity: .7; transform: translateX(5px); }
+    }
+
+    @media (max-width: 600px) {
+      .corner {
+        width: 65px;
+        height: 65px;
+      }
+
+      .top-left, .top-right {
+        top: 20px;
+      }
+
+      .bottom-left, .bottom-right {
+        bottom: 20px;
+      }
+
+      .top-left, .bottom-left {
+        left: 20px;
+      }
+
+      .top-right, .bottom-right {
+        right: 20px;
+      }
+
+      .warning-wrap {
+        transform: scale(.85);
+        margin-bottom: 10px;
+      }
+
+      .content {
+        transform: translateY(-2vh);
+      }
+
+      .home-btn {
+        margin-top: 30px;
+      }
+
+      .horizon {
+        bottom: 45px;
+        width: 90vw;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid"></div>
+
+  <div class="corner top-left"><span></span></div>
+  <div class="corner top-right"><span></span></div>
+  <div class="corner bottom-left"><span></span></div>
+  <div class="corner bottom-right"><span></span></div>
+
+  <div class="glitch-lines" aria-hidden="true">
+    <i></i><i></i><i></i><i></i>
+  </div>
+
+  <main class="page">
+    <section class="content" aria-labelledby="access-title">
+
+      <div class="warning-wrap">
+        <div class="scan"></div>
+        <div class="warning">
+          <div class="exclamation">!</div>
+        </div>
+      </div>
+
+      <h1 id="access-title">غير مصرح لك بدخول</h1>
+
+      <p class="subtitle">
+        للأسف، ليس لديك الصلاحية للوصول إلى هذه الصفحة.<br>
+        <strong>يرجى العودة إلى الصفحة الرئيسية والبدء من هناك.</strong>
+      </p>
+
+      <a
+        class="home-btn"
+        href="https://memes-7lbsaa.vercel.app/"
+        aria-label="العودة إلى الصفحة الرئيسية"
+      >
+        <span class="home-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 10.8 12 3l9 7.8"></path>
+            <path d="M5.5 9.5V21h13V9.5"></path>
+            <path d="M9.5 21v-6.5h5V21"></path>
+          </svg>
+        </span>
+        <span class="home-text">العودة للصفحة الرئيسية</span>
+      </a>
+
+    </section>
+  </main>
+
+  <div class="floor"></div>
+  <div class="horizon"></div>
+
+  <script>
+    // Subtle pointer glow for a premium interactive feel
+    const page = document.querySelector(".page");
+
+    window.addEventListener("pointermove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+      page.style.transform =
+        `translate3d(${x * 4}px, ${y * 3}px, 0)`;
+    });
+
+    window.addEventListener("pointerleave", () => {
+      page.style.transform = "translate3d(0, 0, 0)";
+    });
+  </script>
+</body>
+</html>
