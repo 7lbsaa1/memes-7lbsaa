@@ -1,1277 +1,640 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>لوحة التحكم - ميمزات</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-
   <style>
+    :root {
+      --bg-card: #1e1e2f;
+      --bg-secondary: #2a2a40;
+      --border: #3f3f5a;
+      --accent: #8b5cf6;
+      --shadow: rgba(0,0,0,0.3);
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --input-bg: #252538;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background-color: #12121c;
+      color: var(--text-primary);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
     /* Admin Specific Styles */
-
     .admin-header {
-
       background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-
       color: white;
-
       padding: 30px 0;
-
     }
-
     
-
     .admin-header h1 {
-
       font-size: 28px;
-
       margin-bottom: 5px;
-
     }
-
     
-
     .admin-header p {
-
       opacity: 0.9;
-
       font-size: 14px;
-
     }
-
 
     .admin-stats {
-
       display: flex;
-
       gap: 20px;
-
       margin-top: 20px;
-
     }
-
 
     .stat-card {
-
       background: rgba(255,255,255,0.15);
-
       padding: 15px 25px;
-
       border-radius: 12px;
-
       text-align: center;
-
     }
-
 
     .stat-number {
-
       font-size: 32px;
-
       font-weight: 800;
-
     }
-
 
     .stat-label {
-
       font-size: 13px;
-
       opacity: 0.9;
-
     }
-
 
     .admin-container {
-
       padding: 30px 0;
-
     }
-
-
-    .pending-section {
-
-      margin-bottom: 40px;
-
-    }
-
 
     .section-title {
-
       font-size: 22px;
-
       font-weight: 700;
-
       margin-bottom: 20px;
-
       display: flex;
-
       align-items: center;
-
       gap: 10px;
-
     }
 
-
-    .pending-grid {
-
+    .pending-grid, .approved-grid {
       display: grid;
-
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
       gap: 25px;
-
+    }
+    
+    .pending-grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    
+    .approved-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
     }
 
-
-    .pending-card {
-
+    .pending-card, .approved-card {
       background: var(--bg-card);
-
       border-radius: 16px;
-
       overflow: hidden;
-
       border: 1px solid var(--border);
-
       transition: all 0.3s ease;
-
+      position: relative;
     }
 
-
-    .pending-card:hover {
-
+    .pending-card:hover, .approved-card:hover {
       border-color: var(--accent);
-
       box-shadow: 0 10px 30px var(--shadow);
-
     }
-
 
     .pending-image {
-
       width: 100%;
-
       height: 250px;
-
       object-fit: cover;
-
       background: var(--bg-secondary);
-
     }
-
+    
+    .approved-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
     .pending-info {
-
       padding: 15px;
-
     }
-
 
     .pending-date {
-
       font-size: 13px;
-
       color: var(--text-secondary);
-
       margin-bottom: 15px;
-
     }
 
-
-    .pending-actions {
-
+    .pending-actions, .approved-actions {
       display: flex;
-
       gap: 10px;
-
+    }
+    
+    .approved-actions {
+      padding: 10px;
     }
 
-
-    .btn-approve {
-
+    .btn-approve, .btn-reject, .btn-delete-small {
       flex: 1;
-
       padding: 12px;
-
-      background: #10b981;
-
       color: white;
-
       border: none;
-
       border-radius: 10px;
-
       font-size: 14px;
-
       font-weight: 600;
-
       cursor: pointer;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 8px;
-
       transition: all 0.3s ease;
-
     }
 
-
-    .btn-approve:hover {
-
-      background: #059669;
-
-      transform: translateY(-2px);
-
-    }
-
-
-    .btn-reject {
-
-      flex: 1;
-
-      padding: 12px;
-
-      background: #ef4444;
-
-      color: white;
-
-      border: none;
-
-      border-radius: 10px;
-
-      font-size: 14px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-
-      transition: all 0.3s ease;
-
-    }
-
-
-    .btn-reject:hover {
-
-      background: #dc2626;
-
-      transform: translateY(-2px);
-
-    }
-
-
-    .btn-approve:disabled,
-
-    .btn-reject:disabled {
-
-      opacity: 0.5;
-
-      cursor: not-allowed;
-
-      transform: none;
-
-    }
-
-
-    .empty-pending {
-
-      text-align: center;
-
-      padding: 60px 20px;
-
-      background: var(--bg-card);
-
-      border-radius: 16px;
-
-      border: 1px solid var(--border);
-
-    }
-
-
-    .empty-icon {
-
-      font-size: 60px;
-
-      margin-bottom: 15px;
-
-    }
-
-
-    .empty-text {
-
-      font-size: 16px;
-
-      color: var(--text-secondary);
-
-    }
-
-
-    /* Approved Section */
-
-    .approved-grid {
-
-      display: grid;
-
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-
-      gap: 15px;
-
-    }
-
-
-    .approved-card {
-
-      background: var(--bg-card);
-
-      border-radius: 12px;
-
-      overflow: hidden;
-
-      border: 1px solid var(--border);
-
-      position: relative;
-
-    }
-
-
-    .approved-card img {
-
-      width: 100%;
-
-      height: 180px;
-
-      object-fit: cover;
-
-    }
-
+    .btn-approve { background: #10b981; }
+    .btn-approve:hover { background: #059669; transform: translateY(-2px); }
+
+    .btn-reject { background: #ef4444; }
+    .btn-reject:hover { background: #dc2626; transform: translateY(-2px); }
+    
+    .btn-delete-small { padding: 8px; background: #ef4444; border-radius: 8px; font-size: 12px; }
+    .btn-delete-small:hover { background: #dc2626; }
 
     .approved-badge {
-
       position: absolute;
-
       top: 10px;
-
       left: 10px;
-
       background: #10b981;
-
       color: white;
-
       padding: 4px 10px;
-
       border-radius: 20px;
-
       font-size: 11px;
-
       font-weight: 600;
-
     }
 
-
-    .approved-actions {
-
-      padding: 10px;
-
-      display: flex;
-
-      gap: 8px;
-
+    .empty-pending {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
     }
 
-
-    .btn-delete-small {
-
-      flex: 1;
-
-      padding: 8px;
-
-      background: #ef4444;
-
-      color: white;
-
-      border: none;
-
-      border-radius: 8px;
-
-      font-size: 12px;
-
-      cursor: pointer;
-
-      transition: all 0.3s ease;
-
-    }
-
-
-    .btn-delete-small:hover {
-
-      background: #dc2626;
-
-    }
-
+    .empty-icon { font-size: 60px; margin-bottom: 15px; }
+    .empty-text { font-size: 16px; color: var(--text-secondary); }
 
     /* Login Form */
-
     .login-container {
-
       min-height: 100vh;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       padding: 20px;
-
     }
-
 
     .login-box {
-
       background: var(--bg-card);
-
       border-radius: 20px;
-
       padding: 40px;
-
       width: 100%;
-
       max-width: 400px;
-
       border: 1px solid var(--border);
-
       text-align: center;
-
     }
 
-
-    .login-logo {
-
-      font-size: 50px;
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .login-title {
-
-      font-size: 24px;
-
-      font-weight: 700;
-
-      margin-bottom: 30px;
-
-    }
-
+    .login-logo { font-size: 50px; margin-bottom: 20px; }
+    .login-title { font-size: 24px; font-weight: 700; margin-bottom: 30px; }
 
     .login-form input {
-
-      width: 100%;
-
+      width: 90%;
       padding: 15px;
-
       margin-bottom: 15px;
-
       border: 1px solid var(--border);
-
       border-radius: 12px;
-
       background: var(--input-bg);
-
       color: var(--text-primary);
-
       font-size: 15px;
-
       text-align: center;
-
     }
 
-
-    .login-form input:focus {
-
-      outline: none;
-
-      border-color: var(--accent);
-
-    }
-
+    .login-form input:focus { outline: none; border-color: var(--accent); }
 
     .btn-login {
-
       width: 100%;
-
       padding: 15px;
-
       background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-
       color: white;
-
       border: none;
-
       border-radius: 12px;
-
       font-size: 16px;
-
       font-weight: 600;
-
       cursor: pointer;
-
       transition: all 0.3s ease;
-
     }
-
 
     .btn-login:hover {
-
       transform: translateY(-2px);
-
       box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
-
     }
 
+    .login-error { color: #ef4444; font-size: 13px; margin-top: 15px; display: none; }
+    .login-error.show { display: block; }
 
-    .login-error {
-
-      color: #ef4444;
-
-      font-size: 13px;
-
-      margin-top: 15px;
-
-      display: none;
-
-    }
-
-
-    .login-error.show {
-
-      display: block;
-
-    }
-
-
-    /* Admin Dashboard (hidden by default) */
-
-    .admin-dashboard {
-
-      display: none;
-
-    }
-
-
-    .admin-dashboard.active {
-
-      display: block;
-
-    }
-
-
-    .login-page {
-
-      display: block;
-
-    }
-
-
-    .login-page.hidden {
-
-      display: none;
-
-    }
-
-
-    /* Tabs */
+    .admin-dashboard, .tab-content { display: none; }
+    .admin-dashboard.active, .tab-content.active { display: block; }
+    .login-page { display: block; }
+    .login-page.hidden { display: none; }
 
     .tabs {
-
       display: flex;
-
       gap: 10px;
-
       margin-bottom: 30px;
-
       border-bottom: 1px solid var(--border);
-
       padding-bottom: 15px;
-
     }
-
 
     .tab-btn {
-
       padding: 10px 24px;
-
       background: transparent;
-
       border: none;
-
       border-radius: 10px;
-
       color: var(--text-secondary);
-
       font-size: 14px;
-
       font-weight: 600;
-
       cursor: pointer;
-
       transition: all 0.3s ease;
-
     }
 
+    .tab-btn:hover { color: var(--accent); }
+    .tab-btn.active { background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; }
 
-    .tab-btn:hover {
-
-      color: var(--accent);
-
-    }
-
-
-    .tab-btn.active {
-
-      background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-
-      color: white;
-
-    }
-
-
-    .tab-content {
-
-      display: none;
-
-    }
-
-
-    .tab-content.active {
-
-      display: block;
-
-    }
-
-
-    .back-link {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      color: var(--text-secondary);
-
-      text-decoration: none;
-
-      font-size: 14px;
-
+    .header-links {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 20px;
+    }
 
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
       transition: color 0.3s ease;
-
+      background: none;
+      border: none;
     }
 
+    .action-link:hover { color: var(--accent); }
 
-    .back-link:hover {
-
-      color: var(--accent);
-
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e1e2f;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      opacity: 0;
+      z-index: 1000;
+      border: 1px solid #3f3f5a;
     }
 
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .toast.success .toast-icon { color: #10b981; }
+    .toast.error .toast-icon { color: #ef4444; }
   </style>
-
 </head>
-
-<body data-theme="dark">
+<body>
 
   <!-- Login Page -->
-
   <div class="login-page" id="loginPage">
-
     <div class="login-container">
-
       <div class="login-box">
-
         <div class="login-logo">😂</div>
-
         <h1 class="login-title">لوحة التحكم</h1>
-
         <form class="login-form" id="loginForm">
-
+          <input type="email" id="adminEmail" placeholder="البريد الإلكتروني" required>
           <input type="password" id="adminPassword" placeholder="كلمة المرور" required>
-
-          <button type="submit" class="btn-login">دخول</button>
-
+          <button type="submit" class="btn-login" id="loginBtn">تسجيل الدخول</button>
         </form>
-
-        <p class="login-error" id="loginError">كلمة المرور غير صحيحة</p>
-
+        <p class="login-error" id="loginError">البيانات غير صحيحة</p>
       </div>
-
     </div>
-
   </div>
-
 
   <!-- Admin Dashboard -->
-
   <div class="admin-dashboard" id="adminDashboard">
-
     <!-- Header -->
-
     <header class="admin-header">
-
       <div class="container">
-
         <h1>🎛️ لوحة التحكم</h1>
-
         <p>إدارة الميمزات المرفوعة</p>
-
         <div class="admin-stats">
-
           <div class="stat-card">
-
             <div class="stat-number" id="pendingCount">0</div>
-
             <div class="stat-label">في الانتظار</div>
-
           </div>
-
           <div class="stat-card">
-
             <div class="stat-number" id="approvedCount">0</div>
-
             <div class="stat-label">معتمدة</div>
-
           </div>
-
         </div>
-
       </div>
-
     </header>
 
-
     <!-- Main Content -->
-
     <main class="admin-container">
-
       <div class="container">
-
-        <a href="/" class="back-link">← العودة للموقع</a>
-
+        
+        <div class="header-links">
+          <a href="/" class="action-link">← العودة للموقع</a>
+          <button id="logoutBtn" class="action-link">تسجيل الخروج 🚪</button>
+        </div>
 
         <!-- Tabs -->
-
         <div class="tabs">
-
           <button class="tab-btn active" data-tab="pending">في الانتظار</button>
-
           <button class="tab-btn" data-tab="approved">معتمدة</button>
-
         </div>
-
 
         <!-- Pending Tab -->
-
         <div class="tab-content active" id="pendingTab">
-
-          <div class="pending-grid" id="pendingGrid">
-
-            <!-- Pending memes will be loaded here -->
-
-          </div>
-
+          <div class="pending-grid" id="pendingGrid"></div>
         </div>
-
 
         <!-- Approved Tab -->
-
         <div class="tab-content" id="approvedTab">
-
-          <div class="approved-grid" id="approvedGrid">
-
-            <!-- Approved memes will be loaded here -->
-
-          </div>
-
+          <div class="approved-grid" id="approvedGrid"></div>
         </div>
-
       </div>
-
     </main>
-
   </div>
-
 
   <!-- Toast Notification -->
-
   <div class="toast" id="toast">
-
     <span class="toast-icon">✓</span>
-
     <span class="toast-message" id="toastMessage">تم بنجاح!</span>
-
   </div>
 
-
   <!-- Firebase SDK -->
-
   <script type="module">
-
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-
-    import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, query, getDocs, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
+    import { getFirestore, collection, addDoc, deleteDoc, doc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     // Firebase configuration
-
     const firebaseConfig = {
-
       apiKey: "AIzaSyBcQexCPESpz-AteK3jwUapYndPPxCQb3U",
-
       authDomain: "memes-90684.firebaseapp.com",
-
       projectId: "memes-90684",
-
       storageBucket: "memes-90684.firebasestorage.app",
-
       messagingSenderId: "254309006278",
-
       appId: "1:254309006278:web:3790dcf77f804fa1fb90c7",
-
       measurementId: "G-DB8NG9HTF4"
-
     };
-
 
     // Initialize Firebase
-
     const app = initializeApp(firebaseConfig);
-
     const db = getFirestore(app);
-
+    const auth = getAuth(app);
 
     // DOM Elements
-
     const loginPage = document.getElementById('loginPage');
-
     const adminDashboard = document.getElementById('adminDashboard');
-
     const loginForm = document.getElementById('loginForm');
-
+    const adminEmail = document.getElementById('adminEmail');
     const adminPassword = document.getElementById('adminPassword');
-
+    const loginBtn = document.getElementById('loginBtn');
     const loginError = document.getElementById('loginError');
-
+    const logoutBtn = document.getElementById('logoutBtn');
+    
     const pendingGrid = document.getElementById('pendingGrid');
-
     const approvedGrid = document.getElementById('approvedGrid');
-
     const pendingCount = document.getElementById('pendingCount');
-
     const approvedCount = document.getElementById('approvedCount');
-
     const toast = document.getElementById('toast');
-
     const toastMessage = document.getElementById('toastMessage');
-
     const toastIcon = toast.querySelector('.toast-icon');
-
     const tabBtns = document.querySelectorAll('.tab-btn');
-
     const tabContents = document.querySelectorAll('.tab-content');
 
-    const themeToggle = document.getElementById('themeToggle') || document.createElement('input');
-
-
-    // Simple password protection (for demo - in production use Firebase Auth)
-
-    const ADMIN_PASSWORD = 'admin123';
-
-
-    // Check if already logged in
-
-    if (localStorage.getItem('adminLoggedIn') === 'true') {
-
-      showDashboard();
-
-    }
-
+    // Auth State Observer
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        showDashboard();
+      } else {
+        hideDashboard();
+      }
+    });
 
     // Login handler
-
-    loginForm.addEventListener('submit', (e) => {
-
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      loginBtn.textContent = 'جاري التحقق...';
+      loginBtn.disabled = true;
+      loginError.classList.remove('show');
 
-      if (adminPassword.value === ADMIN_PASSWORD) {
-
-        localStorage.setItem('adminLoggedIn', 'true');
-
-        showDashboard();
-
-      } else {
-
+      try {
+        await signInWithEmailAndPassword(auth, adminEmail.value, adminPassword.value);
+        // showDashboard() will be called automatically by onAuthStateChanged
+      } catch (error) {
+        console.error("Login Error:", error);
+        loginError.textContent = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
         loginError.classList.add('show');
-
-        adminPassword.value = '';
-
+      } finally {
+        loginBtn.textContent = 'تسجيل الدخول';
+        loginBtn.disabled = false;
       }
-
     });
 
+    // Logout handler
+    logoutBtn.addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        showToast('حدث خطأ أثناء تسجيل الخروج', 'error');
+      }
+    });
 
     function showDashboard() {
-
       loginPage.classList.add('hidden');
-
       adminDashboard.classList.add('active');
-
       loadPendingMemes();
-
       loadApprovedMemes();
-
     }
 
+    function hideDashboard() {
+      loginPage.classList.remove('hidden');
+      adminDashboard.classList.remove('active');
+      adminEmail.value = '';
+      adminPassword.value = '';
+    }
 
     // Tab switching
-
     tabBtns.forEach(btn => {
-
       btn.addEventListener('click', () => {
-
         tabBtns.forEach(b => b.classList.remove('active'));
-
         tabContents.forEach(c => c.classList.remove('active'));
-
         btn.classList.add('active');
-
         document.getElementById(`${btn.dataset.tab}Tab`).classList.add('active');
-
       });
-
     });
 
-
     // Load pending memes
-
     async function loadPendingMemes() {
-
       try {
-
-        const q = query(
-
-          collection(db, 'pending_memes'),
-
-          orderBy('createdAt', 'desc')
-
-        );
-
+        const q = query(collection(db, 'pending_memes'), orderBy('createdAt', 'desc'));
         const snapshot = await getDocs(q);
-
         
-
         if (snapshot.empty) {
-
           pendingGrid.innerHTML = `
-
             <div class="empty-pending">
-
               <div class="empty-icon">📭</div>
-
               <p class="empty-text">لا توجد ميمزات في انتظار المراجعة</p>
-
             </div>
-
           `;
-
           pendingCount.textContent = '0';
-
           return;
-
         }
-
 
         pendingCount.textContent = snapshot.size;
-
-        
-
         pendingGrid.innerHTML = '';
-
+        
         snapshot.forEach(docSnap => {
-
           const data = docSnap.data();
-
           const date = data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString('ar-EG') : 'غير محدد';
-
           
-
           const card = document.createElement('div');
-
           card.className = 'pending-card';
-
           card.innerHTML = `
-
             <img src="${data.image}" alt="ميمز" class="pending-image">
-
             <div class="pending-info">
-
               <p class="pending-date">تاريخ الرفع: ${date}</p>
-
               <div class="pending-actions">
-
                 <button class="btn-approve" onclick="approveMeme('${docSnap.id}', '${data.image}')">
-
-                  <span>✓</span>
-
-                  <span>موافقة</span>
-
+                  <span>✓</span><span>موافقة</span>
                 </button>
-
                 <button class="btn-reject" onclick="rejectMeme('${docSnap.id}')">
-
-                  <span>✕</span>
-
-                  <span>رفض</span>
-
+                  <span>✕</span><span>رفض</span>
                 </button>
-
               </div>
-
             </div>
-
           `;
-
           pendingGrid.appendChild(card);
-
         });
-
       } catch (error) {
-
         console.error('Error loading pending memes:', error);
-
         showToast('حدث خطأ أثناء تحميل البيانات', 'error');
-
       }
-
     }
-
 
     // Approve meme
-
     window.approveMeme = async function(docId, imageUrl) {
-
       try {
-
-        // Add to approved collection
-
         await addDoc(collection(db, 'approved_memes'), {
-
           image: imageUrl,
-
           createdAt: serverTimestamp()
-
         });
-
-
-        // Delete from pending
-
         await deleteDoc(doc(db, 'pending_memes', docId));
-
-
         showToast('تمت الموافقة على الميمز!');
-
         loadPendingMemes();
-
         loadApprovedMemes();
-
       } catch (error) {
-
         console.error('Error approving meme:', error);
-
         showToast('حدث خطأ أثناء الموافقة', 'error');
-
       }
-
     };
-
 
     // Reject meme
-
     window.rejectMeme = async function(docId) {
-
       try {
-
         await deleteDoc(doc(db, 'pending_memes', docId));
-
         showToast('تم رفض الميمز');
-
         loadPendingMemes();
-
       } catch (error) {
-
         console.error('Error rejecting meme:', error);
-
         showToast('حدث خطأ أثناء الرفض', 'error');
-
       }
-
     };
-
 
     // Load approved memes
-
     async function loadApprovedMemes() {
-
       try {
-
-        const q = query(
-
-          collection(db, 'approved_memes'),
-
-          orderBy('createdAt', 'desc')
-
-        );
-
+        const q = query(collection(db, 'approved_memes'), orderBy('createdAt', 'desc'));
         const snapshot = await getDocs(q);
-
         
-
         approvedCount.textContent = snapshot.size;
-
         
-
         if (snapshot.empty) {
-
           approvedGrid.innerHTML = `
-
             <div class="empty-pending">
-
               <div class="empty-icon">📭</div>
-
               <p class="empty-text">لا توجد ميمزات معتمدة</p>
-
             </div>
-
           `;
-
           return;
-
         }
-
         
-
         approvedGrid.innerHTML = '';
-
         snapshot.forEach(docSnap => {
-
           const data = docSnap.data();
-
-          
-
           const card = document.createElement('div');
-
           card.className = 'approved-card';
-
           card.innerHTML = `
-
             <img src="${data.image}" alt="ميمز">
-
             <span class="approved-badge">✓ معتمد</span>
-
             <div class="approved-actions">
-
               <button class="btn-delete-small" onclick="deleteApprovedMeme('${docSnap.id}')">حذف</button>
-
             </div>
-
           `;
-
           approvedGrid.appendChild(card);
-
         });
-
       } catch (error) {
-
         console.error('Error loading approved memes:', error);
-
       }
-
     };
-
 
     // Delete approved meme
-
     window.deleteApprovedMeme = async function(docId) {
-
       if (!confirm('هل أنت متأكد من حذف هذا الميمز؟')) return;
-
-      
-
       try {
-
         await deleteDoc(doc(db, 'approved_memes', docId));
-
         showToast('تم حذف الميمز');
-
         loadApprovedMemes();
-
       } catch (error) {
-
         console.error('Error deleting meme:', error);
-
         showToast('حدث خطأ أثناء الحذف', 'error');
-
       }
-
     };
 
-
     // Toast notification
-
     function showToast(message, type = 'success') {
-
       toastMessage.textContent = message;
-
       toast.className = `toast ${type}`;
-
       toastIcon.textContent = type === 'success' ? '✓' : '✕';
-
       toast.classList.add('show');
-
       setTimeout(() => toast.classList.remove('show'), 3000);
-
     }
-
   </script>
-
 </body>
-
 </html>
-
